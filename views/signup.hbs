@@ -1,0 +1,33 @@
+<head>
+    <title>Signup</title>
+    <link rel="stylesheet" href="/views/Css/signup.css">
+</head>
+<div id="container">
+    <div id="img"></div>
+    <div id="side_bar">
+        <h3>SignUp</h3>
+        <form method="POST" enctype="multipart/form-data" id="signup_form">
+            <div class="mb-3 mt-0 m-5">
+                <label for="Username" class="form-label">UserName</label>
+                <input type="text" name="Username" class="form-control" id="Username" placeholder="Enter Username" required>
+            </div>
+            <div class="mb-3 mt-0 m-5">
+                <label for="emailId" class="form-label">Email address</label>
+                <input type="email" name="email" class="form-control" placeholder="Enter Email" id="emailId"
+                    required>
+            </div>
+            <div class="mb-3 mt-0 m-5">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control"placeholder="Enter Password" id="password" required>
+            </div>
+            <div class="mb-3 mt-0 m-5">
+                <label for="avatar" class="form-label">Profile Picture</label>
+                <input type="file" name="avatar" class="form-control" id="avatar" required>
+            </div>
+            <div id="link">
+                <button type="submit" id="button" formaction="#"><span>SignUp</span></button><br>
+                <a href="/login">Login if you already have a account</a>
+            </div>
+        </form>
+    </div>
+</div>

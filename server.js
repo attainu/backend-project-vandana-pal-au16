@@ -1,0 +1,79 @@
+const fileUpload = require('express-fileupload')
+const expHbs = require('express-handlebars')
+const express = require('express');
+const path = require('path');
+const mongoose = require('mongoose');
+const fs = require('fs');
+const bcrypt=require('bcrypt');
+const dbURL = "mongodb+srv://AryanMalik:Malik2001@cluster0.xmqot.mongodb.net/food_cafe?retryWrites=true&w=majority";
+const User = require('./models/userInfo');
+
+const app = express();
+
+app.engine('hbs', expHbs({ extname:'hbs'}))
+app.set('view engine', 'hbs')
+app.use(express.static(path.join(__dirname,'uploads')));
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
+app.use(fileUpload({}))
+
+mongoose.connect(dbURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true 
+}, async(err) => {
+ if (err) throw err
+ console.log('Connected to database')
+}
+)
+
+app.get('/signup', (req, res) => {
+    res.render('signup')
+})
+
+app.post('/signup',async (req, res) => {
+    const salt= await bcrypt.genSalt(10);
+    let myFile = req.files.avatar
+    req.body["imgUrl"]=myFile.name
+    req.body["password"]=await bcrypt.hash(req.body.password,salt);
+    const userdata = new User(req.body)
+    console.log(userdata)
+    await userdata.save()
+    res.send({uploaded: true})
+})
+
+
+app.get('/login', (req, res) => {
+    res.render('login')
+})
+
+// app.post('/login',async (req, res) => {
+//     const password = req.body.password
+//     for (let index = 0; index < users.length; index++) {
+//         const usersObj = users[index];
+//         console.log("password",password)
+//         console.log("password from users",usersObj.password)
+//         console.log(bcrypt.compare(password, usersObj.password))
+//         if (bcrypt.compare(password , usersObj.password) && usersObj.email == req.body.email) {
+//             const expireDate = new Date('2021-05-30')
+//             res.cookie('usersIdentified', usersObj.email, { expires: expireDate })
+//             res.send({Login:true})
+//             console.log(usersObj)
+//             return
+//         }
+//     }
+//     res.send({Login: false})
+// })
+
+app.get('/views/Css/login.css', (req,res) => {
+    res.sendFile(__dirname + '/views/Css/login.css')
+})
+
+app.get('/views/Css/signup.css', (req,res) => {
+    res.sendFile(__dirname + '/views/Css/signup.css')
+})
+
+app.get('/views/Css/landingPage.css', (req,res) => {
+    res.sendFile(__dirname + '/views/Css/landingPage.css')
+})
+
+app.listen(3000, () => console.log('Server Started http://localhost:3000/signup'))

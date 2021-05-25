@@ -1,0 +1,25 @@
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="/views/Css/login.css">
+</head>
+<div id="container">
+    <div id="img"></div>
+    <div id="side_bar">
+        <h3>User Login</h3>
+        <form method="POST" enctype="multipart/form-data" id="login_form">
+            <div class="mb-3 mt-0 m-5">
+                <label for="emailId" class="form-label">Email address</label>
+                <input type="email" name="email" class="form-control"placeholder="Enter Your Username" id="emailId"
+                    required>
+            </div>
+            <div class="mb-3 mt-0 m-5">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Enter Your Password" id="password" required>
+            </div>
+            <div id="link">
+                <button type="submit" id="button" formaction="#"><span>Login</span></button><br>
+                <a href="/signup">Don't have an account yet? Sign Up</a>
+            </div>
+        </form>
+    </div>
+</div>
