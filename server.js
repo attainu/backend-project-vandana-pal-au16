@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const fs = require('fs');
 const bcrypt=require('bcrypt');
 const dbURL = "mongodb+srv://AryanMalik:Malik2001@cluster0.xmqot.mongodb.net/food_cafe?retryWrites=true&w=majority";
-const User = require('./models/userInfo');
+const UserModel = require('./models/userInfo');
 
 const app = express();
 
@@ -35,7 +35,7 @@ app.post('/signup',async (req, res) => {
     let myFile = req.files.avatar
     req.body["imgUrl"]=myFile.name
     req.body["password"]=await bcrypt.hash(req.body.password,salt);
-    const userdata = new User(req.body)
+    const userdata = new UserModel(req.body)
     console.log(userdata)
     await userdata.save()
     res.send({uploaded: true})
@@ -46,23 +46,26 @@ app.get('/login', (req, res) => {
     res.render('login')
 })
 
-// app.post('/login',async (req, res) => {
-//     const password = req.body.password
-//     for (let index = 0; index < users.length; index++) {
-//         const usersObj = users[index];
-//         console.log("password",password)
-//         console.log("password from users",usersObj.password)
-//         console.log(bcrypt.compare(password, usersObj.password))
-//         if (bcrypt.compare(password , usersObj.password) && usersObj.email == req.body.email) {
-//             const expireDate = new Date('2021-05-30')
-//             res.cookie('usersIdentified', usersObj.email, { expires: expireDate })
-//             res.send({Login:true})
-//             console.log(usersObj)
-//             return
-//         }
-//     }
-//     res.send({Login: false})
-// })
+app.post('/login',async (req, res) => {
+    UserModel.find().then(data =>{
+        const password = req.body.password
+    for (let index = 0; index < data.length; index++) {
+        const dataObj = data[index];
+        console.log("password from Mongoose",dataObj.password)
+        console.log("password",password)
+        
+        console.log(bcrypt.compare("Malik2001", dataObj.password))
+        if (bcrypt.compare(password , dataObj.password) && dataObj.email == req.body.email) {
+            const expireDate = new Date('2021-05-30')
+            res.cookie('dataIdentified', dataObj.email, { expires: expireDate })
+            res.send({Login:true})
+            console.log(dataObj)
+            return
+        }
+    }
+    res.send({Login: false})
+    })
+})
 
 app.get('/views/Css/login.css', (req,res) => {
     res.sendFile(__dirname + '/views/Css/login.css')
