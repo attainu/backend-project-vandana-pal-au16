@@ -2,6 +2,23 @@
   display: flex;
   flex-direction: row;
 }
+#nav_bar{
+  display:flex;
+  flex-direction: row;
+  font-family: 'Squada One';
+  font-size: 4.5vh;
+  position:absolute;
+  padding:1vh 0% 1vh 0%;
+  height:8vh;
+  top:0px;
+  width:100%;
+  background-color:black;
+  color:#228B22;
+}
+#logo{
+  width:50px;
+  height:auto;
+}
 #img{
   background-image: url(https://images3.alphacoders.com/922/thumb-1920-922680.jpg);
   background-position: center;
@@ -54,21 +71,38 @@ outline: none;
   right: 0;
 }
 
-h3{
+#form_heading{
 font-family: 'Fascinate', cursive;
 }
 
 @media only screen and (max-width: 600px) {
+  
+#nav_bar{
+  flex-direction: column;
+  font-family: 'Squada One';
+  font-size: 5vh;
+  align-items: center;
+  height:15vh;
+  top:0px;
+  width:100%;
+  background-color:transparent;
+  color:#228B22;
+}
+#logo{
+  width:80px;
+  height:auto;
+}
   #container{
       width: 57vh;
       display: block;
-     color:white
+      color:white;
+      margin-top: 5vh;
   }
   #img{
     display: none;
   }
   body{
-    background-image: url(https://png.pngtree.com/thumb_back/fw800/back_our/20190620/ourmid/pngtree-delicious-pizza-poster-background-image_158004.jpg);
+    background-image: url(https://png.pngtree.com/thumb_back/fw800/back_our/20190620/ourmid/pngtree-senior-restaurant-steak-couple-dating-h5-background-material-image_161501.jpg);
     background-size: cover cover;
     background-position: inherit;
     background-repeat: no-repeat;
@@ -80,7 +114,7 @@ font-family: 'Fascinate', cursive;
   #button{
       margin:5vh 0vh 0vh 2vh;
   }
-  h3{
+  #form_heading{
     font-family: 'Fascinate', cursive;
     text-align: center;
     width:100%;
