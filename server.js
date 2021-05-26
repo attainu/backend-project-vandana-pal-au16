@@ -1,14 +1,14 @@
+require("dotenv").config();
 const fileUpload = require('express-fileupload')
 const expHbs = require('express-handlebars')
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
-const fs = require('fs');
 const bcrypt = require('bcrypt');
-const dbURL = "mongodb+srv://AryanMalik:Malik2001@cluster0.xmqot.mongodb.net/food_cafe?retryWrites=true&w=majority";
 const UserModel = require('./models/userInfo');
 
 const app = express();
+const dbURL = process.env.URL;
 
 app.engine('hbs', expHbs({ extname: 'hbs' }))
 app.set('view engine', 'hbs')
@@ -71,5 +71,5 @@ app.get('/views/Css/signup.css', (req, res) => {
 app.get('/views/Css/landingPage.css', (req, res) => {
     res.sendFile(__dirname + '/views/Css/landingPage.css')
 })
-app.listen(process.env.PORT || 3000)
-// app.listen(3000, () => console.log('Server Started http://localhost:3000/signup'))
+// app.listen(process.env.PORT || 3000)
+app.listen(3000, () => console.log('Server Started http://localhost:3000/signup'))
