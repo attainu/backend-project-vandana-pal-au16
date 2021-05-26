@@ -17,9 +17,9 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(fileUpload({}))
 
-mongoose.connect(dbURL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+mongoose.connect(dbURL, {useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
 }, async (err) => {
     if (err) throw err
     console.log('Connected to database')
