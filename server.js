@@ -5,8 +5,8 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const UserModel = require('./models/userInfo');
-
+const fetch=require("node-fetch")
+const userModel = require('./models/userInfo');
 const app = express();
 const dbURL = process.env.URL;
 
@@ -35,7 +35,7 @@ app.post('/signup', async (req, res) => {
     let myFile = req.files.avatar
     req.body["imgUrl"] = myFile.name
     req.body["password"] = await bcrypt.hash(req.body.password, salt);
-    const userdata = new UserModel(req.body)
+    const userdata = new userModel(req.body)
     console.log(userdata)
     await userdata.save()
     res.send({ uploaded: true })
@@ -47,7 +47,7 @@ app.get('/login', (req, res) => {
 })
 
 app.post('/login', async (req, res) => {
-    const user = await UserModel.findOne({ email: req.body.email });
+    const user = await userModel.findOne({ email: req.body.email });
     if (user) {
         const validPassword = await bcrypt.compare(req.body.password, user.password);
         if (validPassword) {
@@ -64,6 +64,7 @@ app.get('/views/Css/login.css', (req, res) => {
     res.sendFile(__dirname + '/views/Css/login.css')
 })
 
+
 app.get('/views/Css/signup.css', (req, res) => {
     res.sendFile(__dirname + '/views/Css/signup.css')
 })
@@ -71,5 +72,4 @@ app.get('/views/Css/signup.css', (req, res) => {
 app.get('/views/Css/landingPage.css', (req, res) => {
     res.sendFile(__dirname + '/views/Css/landingPage.css')
 })
-app.listen(process.env.PORT || 3000)
-// app.listen(3000, () => console.log('Server Started http://localhost:3000/signup'))
+app.listen(3000, () => console.log('Server Started http://localhost:3000/signup'))

@@ -17,7 +17,7 @@
 }
 #logo{
   width:50px;
-  height:auto;
+  height:6vh;
 }
 #img{
   background-image: url(https://images3.alphacoders.com/922/thumb-1920-922680.jpg);
@@ -28,6 +28,7 @@
   height: 100vh;
   box-shadow: 10px 10px 5px #aaaaaa;
 }
+
 #side_bar{
   width:30%;
   padding-top: 25vh;
