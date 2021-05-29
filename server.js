@@ -25,7 +25,9 @@ mongoose.connect(dbURL, {useNewUrlParser: true,
     console.log('Connected to database')
 }
 )
-
+app.get('/', (req, res) => {
+    res.render('homepage')
+})
 app.get('/signup', (req, res) => {
     res.render('signup')
 })
@@ -48,10 +50,11 @@ app.get('/login', (req, res) => {
 
 app.post('/login', async (req, res) => {
     const user = await userModel.findOne({ email: req.body.email });
+    console.log(user)
     if (user) {
         const validPassword = await bcrypt.compare(req.body.password, user.password);
         if (validPassword) {
-            res.status(200).json({ message: "Valid password" });
+            res.status(200).render("homepage",user);
         } else {
             res.status(400).json({ error: "Invalid Password" });
         }
@@ -60,11 +63,15 @@ app.post('/login', async (req, res) => {
     }
 })
 
+app.get('/views/Js/homepage.js', (req, res) => {
+    res.sendFile(__dirname + '/views/Js/homepage.js')
+})
+app.get('/views/Css/homepage.css', (req, res) => {
+    res.sendFile(__dirname + '/views/Css/homepage.css')
+})
 app.get('/views/Css/login.css', (req, res) => {
     res.sendFile(__dirname + '/views/Css/login.css')
 })
-
-
 app.get('/views/Css/signup.css', (req, res) => {
     res.sendFile(__dirname + '/views/Css/signup.css')
 })
