@@ -131,13 +131,13 @@ outline: none;
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
 
   body{
     background-image: url(https://png.pngtree.com/thumb_back/fw800/back_our/20190620/ourmid/pngtree-senior-restaurant-steak-couple-dating-h5-background-material-image_161501.jpg);
     background-size: cover contain;
     background-position: inherit;
-    background-repeat: no-repeat;
+    background-repeat:repeat;
     margin:0px;
     }
   
