@@ -127,15 +127,26 @@ font-family: 'Fascinate', cursive;
 }
 
 @media only screen and (max-width: 600px) {
+
+body{
+  background-image: url(https://png.pngtree.com/thumb_back/fw800/back_our/20190620/ourmid/pngtree-senior-restaurant-steak-couple-dating-h5-background-material-image_161501.jpg);
+  background-size: cover contain;
+  background-position: inherit;
+  background-repeat: no-repeat;
+  margin:0px;
+  }
+
 #nav_shadow {
   display: none;
 }
+
 #nav_bar{
   display: flex;
-  position:sticky;
+  position:relative;
   flex-direction: column;
   align-items: center;
   margin-top: 70px;
+  width:100%;
   justify-content: center;
 }
 
@@ -160,32 +171,25 @@ font-family: 'Fascinate', cursive;
   width:80px;
   height:auto;
 }
-  #container{
-      width: 57vh;
-      display: block;
-      color:white;
-      margin-top: 5vh;
-  }
-  #img{
-    display: none;
-  }
-  body{
-    background-image: url(https://png.pngtree.com/thumb_back/fw800/back_our/20190620/ourmid/pngtree-senior-restaurant-steak-couple-dating-h5-background-material-image_161501.jpg);
-    background-size: cover cover;
-    background-position: inherit;
-    background-repeat: no-repeat;
-  }
-  #side_bar{
-    width:100%;
-    position:absolute;
-    bottom:100px;
-  }
-  #button{
-      margin:5vh 0vh 0vh 2vh;
-  }
-  #form_heading{
-    font-family: 'Fascinate', cursive;
-    text-align: center;
-    width:100%;
-  }
+#container{
+  flex-direction: column;
+}
+
+#img{
+  display: none;
+}
+#side_bar{
+  position: relative;
+  width:100%;
+  bottom:100px;
+  color:white
+}
+#button{
+  margin:5vh 0vh 0vh 2vh;
+}
+#form_heading{
+  font-family: 'Fascinate', cursive;
+  text-align: center;
+  width:100%;
+}
 }

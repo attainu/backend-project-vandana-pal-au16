@@ -1,6 +1,8 @@
 body{
-    margin:none;
+    margin:0;
+    overflow-x:hidden;
 }
+
 #nav_bar{
     position: fixed;
     display:flex;
@@ -21,7 +23,6 @@ body{
     box-shadow: 0px 10px 100px 30px #000000;
     z-index: 2;
 }
-
 #right{
     display:flex;
     flex-direction: row;
@@ -32,31 +33,6 @@ body{
     width:90%;
     display:flex;
     justify-content: flex-end;
-}
-
-#logout_menu{
-    background-color: rgba(255, 255, 255, 0.5);
-    justify-content: center;
-    align-items: center;
-    display:none;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 100;
-}
-#logout_form{
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width:28%;
-    height:35vh;
-    border-radius: 10vh;
-    line-height: 40px;
-}
-#close_button{
-margin-left:190px;
-cursor: pointer;
 }
 
 #company_name{
@@ -70,7 +46,6 @@ cursor: pointer;
     height:6vh;
     margin-bottom: 2vh;
 }
-
 
 #img_cover{
     float: right;
@@ -178,34 +153,6 @@ cursor: pointer;
     background-color: #111439;
     color:#ffffff;
 }
-
-#searchbar_form{
-    position: relative;
-    width: 80vh;
-    height: 50px;
-    background-color: white;
-    box-sizing: border-box;
-    border: 4px solid white;
-    padding: 5px;
-    margin-bottom: 100px;
-}
-#searchbar{
-    position: relative;
-    bottom:5px;
-    width: 80%;
-    height: 42.5px;
-    line-height: 30px;
-    outline: none;
-    border: none;
-    font-size: 1em;
-    padding: 0 20px;
-    transition: 0.3s;
-}
-
-#searchbar:hover{
-    border-bottom: 4px solid black;
-}
-
 .fas{
     width: 30px;
     height: auto;
@@ -225,10 +172,36 @@ cursor: pointer;
     font-size: 1.2em;
     transition: 0.6s;
 }
-body{
-    margin:0;
-    overflow-x:hidden;
+
+#searchbar_form{
+    position: relative;
+    width: 80vh;
+    height: 50px;
+    background-color: white;
+    box-sizing: border-box;
+    border: 4px solid white;
+    padding: 5px;
+    margin-bottom: 100px;
 }
+
+#searchbar{
+    position: relative;
+    bottom:5px;
+    width: 80%;
+    height: 42.5px;
+    line-height: 30px;
+    outline: none;
+    border: none;
+    font-size: 1em;
+    padding: 0 20px;
+    transition: 0.3s;
+}
+
+#searchbar:hover{
+    border-bottom: 4px solid black;
+}
+
+
 footer{ width:100%;  
     background-color:#000;
     padding-top:30px;  
@@ -299,15 +272,8 @@ footer .column:nth-child(1) .fa-twitter{
     color:gray;   
     font-size:12px;
 }
+
 @media (max-width:800px){
-#searchbar_form{
-    width:50vh;
-}
-
-#nav_shadow {
-    display: none;
-}
-
 #nav_bar{
     background-color: #000000;
     position: relative;
@@ -317,24 +283,37 @@ footer .column:nth-child(1) .fa-twitter{
     justify-content: center;
     height:220px;
 }
+
+#nav_shadow {
+    display: none;
+}
+
+.nav_link button{
+    color:white;
+    font-size:20px;
+}
+
+#logo{
+    width:80px;
+    height:auto;
+}
+
 #left{
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 #right{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.nav_link button{
-    color:white;
-    font-size:20px;
+
+#searchbar_form{
+    width:50vh;
 }
-#logo{
-    width:80px;
-    height:auto;
-}
+
 footer .column:nth-child(1) a:nth-child(3),footer .column:nth-child(1) a:nth-child(4),footer .column:nth-child(1) a:nth-child(5){   
     width:23px;
     height:23px;
