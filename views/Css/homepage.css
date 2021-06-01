@@ -337,8 +337,11 @@ footer .column:nth-child(1) .fa-twitter{
 }
 
 #img_cover{
-    right:210px;
-    top:120px;
+    float: right;
+    position: relative;
+    top:-20px;
+    bottom:50px;
+    right:0px;
 }
 
 #searchbar_form{
