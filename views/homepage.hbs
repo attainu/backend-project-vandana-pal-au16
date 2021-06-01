@@ -104,6 +104,10 @@ for(var i=0;i<=str.length-1;i++){
         result=str[i-1]
         break;
     }
+    if(str[i]==element){
+      console.log(str[i])
+      return element;
+    }
     else if(str[i].search(element[0])==0){
         for(var j=0;j<=element.length-1;j++){
             if(str[i].search(element[j])==j){
