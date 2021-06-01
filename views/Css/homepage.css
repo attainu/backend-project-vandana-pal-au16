@@ -48,11 +48,13 @@ body{
 }
 
 #img_cover{
-    float: right;
+    position:absolute;
+    right:250px;
+    top:10px;
     background-size:cover;
     background-position: center;
-    height:30px;
-    width:30px;
+    height:40px;
+    width:40px;
     border-radius: 50%;
 }
 
@@ -85,7 +87,6 @@ body{
     width:100%;
     background-image: url('https://images.unsplash.com/photo-1505935428862-770b6f24f629?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1494&q=80');
     filter: saturate(3);
-    
     background-size:cover;
     background-position: top;
     z-index: -1;
@@ -297,13 +298,14 @@ footer .column:nth-child(1) .fa-twitter{
 
 @media (max-width:800px){
 #nav_bar{
-    background-color: #000000;
+    filter: blur(40%);
+    background-color:black;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height:220px;
+    height:auto;
 }
 
 #nav_shadow {
@@ -322,18 +324,25 @@ footer .column:nth-child(1) .fa-twitter{
 
 #left{
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
+    height:65px;
 }
 
 #right{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
 }
 
+#img_cover{
+    right:210px;
+    top:120px;
+}
+
 #searchbar_form{
-    width:50vh;
+    width:40vh;
 }
 
 #grid_result{

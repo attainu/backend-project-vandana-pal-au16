@@ -64,6 +64,9 @@ app.post('/login', async (req, res) => {
     }
 })
 
+app.post('/db/cart.json', (req, res) => {
+    console.log(req.body)})
+
 app.post('/logout', async (req, res) => {
     res.render("homepage")
 })
@@ -85,5 +88,8 @@ app.get('/views/Css/landingPage.css', (req, res) => {
     res.sendFile(__dirname + '/views/Css/landingPage.css')
 })
 
+app.get('/db/cart.json', (req, res) => {
+    res.sendFile(__dirname + '/db/cart.json')
+})
 app.listen(process.env.PORT || 3000)
 // app.listen(3000, () => console.log('Server Started http://localhost:3000/'))
