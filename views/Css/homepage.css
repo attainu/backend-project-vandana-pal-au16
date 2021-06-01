@@ -201,7 +201,21 @@ body{
     border-bottom: 4px solid black;
 }
 
-
+#grid_result{
+    display:grid;
+    width:85%;
+    margin:0px 0px 100px 100px;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    grid-gap: 100px 100px;
+}
+#grid_card{
+    text-align: center;
+    align-items: center;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0px 10px 10px 3px#888888;
+}
 footer{ width:100%;  
     background-color:#000;
     padding-top:30px;  
@@ -314,6 +328,12 @@ footer .column:nth-child(1) .fa-twitter{
     width:50vh;
 }
 
+#grid_result{
+    width:auto;
+    margin:0 0 70px 0;
+    grid-template-columns: auto;
+    grid-gap: 50px 100px;
+}
 footer .column:nth-child(1) a:nth-child(3),footer .column:nth-child(1) a:nth-child(4),footer .column:nth-child(1) a:nth-child(5){   
     width:23px;
     height:23px;

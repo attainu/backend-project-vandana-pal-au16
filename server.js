@@ -85,5 +85,5 @@ app.get('/views/Css/landingPage.css', (req, res) => {
     res.sendFile(__dirname + '/views/Css/landingPage.css')
 })
 
-app.listen(process.env.PORT || 3000)
-// app.listen(3000, () => console.log('Server Started http://localhost:3000/'))
+// app.listen(process.env.PORT || 3000)
+app.listen(3000, () => console.log('Server Started http://localhost:3000/'))
