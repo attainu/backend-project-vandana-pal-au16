@@ -204,11 +204,9 @@ body{
     font-size: 1em;
     padding: 0 20px;
     transition: 0.3s;
-}
-
-#searchbar:hover{
     border-bottom: 4px solid black;
 }
+
 
 #grid_result{
     display:grid;
@@ -345,7 +343,8 @@ footer .column:nth-child(1) .fa-twitter{
 }
 
 #searchbar_form{
-    width:40vh;
+    width:350px;
+    outline:none;
 }
 
 #grid_result{
@@ -354,6 +353,7 @@ footer .column:nth-child(1) .fa-twitter{
     grid-template-columns: auto;
     grid-gap: 50px 100px;
 }
+
 footer .column:nth-child(1) a:nth-child(3),footer .column:nth-child(1) a:nth-child(4),footer .column:nth-child(1) a:nth-child(5){   
     width:23px;
     height:23px;
