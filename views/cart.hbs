@@ -1,0 +1,166 @@
+<head>
+    <title>TheSpiceNet</title>
+    <link rel="stylesheet" href="/views/Css/cart.css">
+</head>
+<div id="nav_shadow"></div>
+<div id="nav_bar">
+    <div id="right">
+        <img src="https://res.cloudinary.com/dtg5jkrv7/image/upload/v1622303085/logo.svg" id="logo">
+        <span id="company_name">TheSpiceNet
+        </span>
+    </div>
+    <div id="left">
+        <a href="/homepage" class="nav_link">
+            <button type="submit">Home
+            </button>
+        </a>
+    </div>
+</div>
+
+<div id="content">
+    <div id ="heading_1">Shopping Cart</div>
+    <div class="container-fluid">
+        <div class="row">
+            <aside class="col-lg-9">
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="table table-borderless table-shopping-cart">
+                            <thead class="text-muted">
+                                <tr class="small text-uppercase">
+                                    <th scope="col">Sr No.</th>
+                                    <th scope="col">Product</th>
+                                    <th scope="col" width="120">Quantity</th>
+                                    <th scope="col" width="120">Price</th>
+                                    <th scope="col" class="text-right d-none d-md-block" width="200"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="product_list">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </aside>
+            <aside class="col-lg-3">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group"> <label>Have coupon?</label>
+                                <div class="input-group"> <input type="text" class="form-control coupon" name=""
+                                        placeholder="Coupon code"> <span class="input-group-append"> <button
+                                            class="btn btn-primary btn-apply coupon">Apply</button> </span> </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <dl class="dlist-align">
+                            <dt>Total price:</dt>
+                            <dd class="text-right ml-3">$69.97</dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>Discount:</dt>
+                            <dd class="text-right text-danger ml-3">- $10.00</dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>Total:</dt>
+                            <dd class="text-right text-dark b ml-3"><strong>$59.97</strong></dd>
+                        </dl>
+                        <hr> <a href="#" class="btn btn-out btn-primary btn-square btn-main" data-abc="true"> Make
+                            Purchase </a> <a href="#" class="btn btn-out btn-success btn-square btn-main mt-2"
+                            data-abc="true">Continue Shopping</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="column">
+        <a class="footer_title">TheSpiceNet</a>
+        <a>Support and become a member of TheSpiceNet family and follow us on different social media platform to get the
+            latest news about new opening restaurnats.</a>
+        <a href="#" title="Facebook"><i class="fa fa-facebook"></i></a>
+        <a href="#" title="Instagram"><i class="fa fa-instagram"></i></a>
+        <a href="#" title="Twitter"><i class="fa fa-twitter"></i></a>
+    </div>
+    <div class="column">
+        <a class="footer_title">OTHER LINKS</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Ticket</a>
+        <a href="#">Contact Us</a>
+    </div>
+    <div class="column">
+        <a class="footer_title">SHORT CUT</a>
+        <a href="">Our Services</a>
+        <a href="">Our Blog</a>
+        <a href="">Our Projects</a>
+        <a href="">About Us</a>
+    </div>
+    <div class="column">
+        <a class="footer_title">LATEST NEWS</a>
+        <a href="" title="Lorem ipsum dolor sit amet"><img src="https://source.unsplash.com/50x50/?green,trees"></a>
+        <a href="" title="Lorem ipsum dolor sit amet"><img src="https://source.unsplash.com/50x50/?green,tree"></a>
+        <a href="" title="Lorem ipsum dolor sit amet"><img src="https://source.unsplash.com/50x50/?green,plant"></a>
+        <a href="" title="Lorem ipsum dolor sit amet"><img src="https://source.unsplash.com/50x50/?green,forest"></a>
+        <a href="" title="Lorem ipsum dolor sit amet"><img
+                src="https://source.unsplash.com/50x50/?green,afforestation"></a>
+    </div>
+    <div class="column">
+        <a class="footer_title">GET IN TOUCH</a>
+        <a title="Address"><i class="fa fa-map-marker"></i> 007, street, province/state, country - zipcode</a>
+        <a href="emailto:" title="Email"><i class="fa fa-envelope"></i> email@serviceprovider.domain</a>
+        <a href="tel:" title="Contact"><i class="fa fa-phone"></i> +(x)-xxxx-xxxxx</a>
+    </div>
+
+    <div class="sub-footer">
+        © CopyRights 2021 TheSpiceNet || All rights reserved
+    </div>
+</footer>
+<script defer>
+    const product=document.getElementById("product_list")
+    var dish = "{{dish}}".split(",");
+    var img="{{img_Url}}".split(",");
+    var publisher="{{publisher}}".split(",");
+    var price=10;
+    console.log(dish)
+    console.log(img)
+    console.log(publisher)
+    console.log(price)
+    for(var i=0;i<=dish.length-1;i++) {
+        product.innerHTML += `<tr>
+                                <td>${i+1}
+                                </td>
+                                <td>
+                                    <figure class="itemside align-items-center">
+                                        <div class="aside"><img src=${img[i]} class="img-sm"></div>
+                                        <figcaption class="info"> <a href="#" class="title text-dark"
+                                                data-abc="true">${dish[i]}</a>
+                                            <p class="text-muted small">${publisher[i]}</p>
+                                        </figcaption>
+                                    </figure>
+                                </td>
+                                <td> <select class="form-control">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                    </select> </td>
+                                <td>
+                                    <div class="price-wrap"> <var class="price">$${price}.00</var> 
+                                    <small class="text-muted"> $9.20 each </small> </div>
+                                </td>
+                                <td class="text-right d-none d-md-block"> <a data-original-title="Save to Wishlist"
+                                        href="#" class="btn btn-light" data-toggle="tooltip"
+                                        data-abc="true"> <i class="fa fa-heart"></i></a> <a href=""
+                                        class="btn btn-light" data-abc="true" onclick="removeitem()"> Remove</a> </td>
+                            </tr>`
+    }
+</script>
