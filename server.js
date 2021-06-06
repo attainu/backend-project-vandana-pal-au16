@@ -8,8 +8,10 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const userModel = require('./models/userInfo');
 const cartModel = require('./models/cartInfo');
+const productModel = require('./models/productInfo');
 const app = express();
 const dbURL = process.env.URL;
+let username="";
 
 app.engine('hbs', expHbs({ extname: 'hbs' }))
 app.set('view engine', 'hbs')
@@ -25,7 +27,6 @@ mongoose.connect(dbURL, {
     useFindAndModify: false
 }, async (err) => {
     if (err) throw err
-    console.log('Connected to database')
 }
 )
 
@@ -40,20 +41,27 @@ app.get('/login', async (req, res) => {
         {login:"true"},
         {
             $set:{
-             login:"false"   
+             login:"false"
+            }
+    })
+    await cartModel.findOneAndUpdate(
+        {login:"true"},
+        {
+            $set:{
+             login:"false"
             }
     })
     res.render('login')
 })
 
-app.get('/homepage', async (req, res) => {
-    let user =await userModel.findOne({ login: "true" })
+app.get('/', async (req, res) => {
+    let user =await userModel.findOne({ username: `${username}`});
     res.render('homepage',user)
 })
 
 app.get('/cart', async (req, res) => {
-    const user = await cartModel.findOne({ login: "true"});
-    res.render('cart', user)
+    let user =await cartModel.findOne({ username: `${username}`});
+    res.render('cart',user)
 })
 
 // Css get request
@@ -67,7 +75,6 @@ app.get('/views/Css/signup.css', (req, res) => {
 app.get('/views/Css/homepage.css', (req, res) => {
     res.sendFile(__dirname + '/views/Css/homepage.css')
 })
-
 app.get('/views/Css/cart.css', (req, res) => {
     res.sendFile(__dirname + '/views/Css/cart.css')
 })
@@ -83,20 +90,19 @@ app.post('/signup', async (req, res) => {
     req.body["login"] = "false";
     myFile.mv(`./uploads/${myFile.name}`, (err) => {
         if (err) {
-            res.send({ uploaded: false })
+            res.status(300).render("signup", {success:"false"});
             return
         }
     })
     const userdata = new userModel(req.body)
-    console.log(userdata)
     await userdata.save()
-    res.send({ uploaded: true })
+    res.status(300).render("signup", {success:"true"});
 })
 
-app.post('/homepage', async (req, res) => {
-    console.log("/login activated")
+app.post('/', async (req, res) => {
     let user = await userModel.findOne({ email: req.body.email });
     if (user) {
+        username=user.username;
         const validPassword = await bcrypt.compare(req.body.password, user.password);
         if (validPassword) {
             user = await userModel.findOneAndUpdate(
@@ -107,17 +113,21 @@ app.post('/homepage', async (req, res) => {
                     }
             })
             user["login"] = "true";
-            console.log(user)
             res.status(300).render("homepage", user);
         } else {
-            res.status(426).json({ error: "Invalid Password" });
+            res.status(300).render("login", {password:"Incorrect"});
         }
-    } else {
-        res.status(426).json({ error: "User does not exist" });
+    }else{
+        res.status(300).render("login", {password:"Incorrect"});
     }
 })
 
-app.post('/cartdata', async (req, res) => {
+app.get(`/search/:product`,async(req, res) => {
+    let product =  await productModel.find({search:req.params.product})
+    res.send(product)
+})
+
+app.post('/sendcartdata', async (req, res) => {
     const user = await cartModel.findOne({ username: req.body.username });
     let cartdata = new cartModel(req.body)
     if (user) {
@@ -128,7 +138,8 @@ app.post('/cartdata', async (req, res) => {
             $push:{
                 dish : req.body.dish,
                 publisher : req.body.publisher,
-                img_Url : req.body.img_Url
+                img_Url : req.body.img_Url,
+                price:req.body.price
             },
             $set:{
                 login:"true"   
@@ -141,5 +152,22 @@ app.post('/cartdata', async (req, res) => {
     }
 })
 
+app.post('/receivecartdata', async (req, res) => {
+    const user = await cartModel.findOne({ username: req.body.username });
+    let cartdata = new cartModel(req.body)
+    if (user) {
+    res.status(300).json({ uploaded: "true" });
+    cartdata= await cartModel.findOneAndUpdate(
+        { username: req.body.username },
+        {
+            $set:{
+                dish : req.body.dish,
+                publisher : req.body.publisher,
+                img_Url : req.body.img_Url,
+                price : req.body.price,
+            }
+        })
+    }
+})
+
 app.listen(process.env.PORT || 3000)
-// app.listen(3000, () => console.log('Server Started http://localhost:3000/'))

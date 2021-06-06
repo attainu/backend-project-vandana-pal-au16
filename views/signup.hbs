@@ -12,12 +12,14 @@
             </span>
         </div>
         <div id="left">
-            <a href="/homepage" class="nav_link">
+            <a href="/" class="nav_link">
                 <button type="submit">Home
                 </button>
             </a>
         </div>
     </div>
+<div class="alert alert-danger" id="alert" role="alert">
+</div>
     <div id="img"></div>
     <div id="side_bar">
         <h3 id="form_heading">User SignUp</h3>
@@ -46,3 +48,24 @@
         </form>
     </div>
 </div>
+<script differ>
+    if ("{{success}}"=="true"){
+        document.getElementById("alert").style.backgroundColor="#4CAF50";
+        document.getElementById("alert").style.color="#ffffff";
+        showMessage('alert',"You Successfully SignUp");
+    }
+    else if("{{success}}"=="false"){
+        showMessage('alert',"Error Not Able To Signup");
+    }
+
+     function showMessage(elementId,message) {
+        document.getElementById(elementId).style.display = 'block';
+        console.log(elementId)
+        document.getElementById("alert").innerHTML =`<b>Message:</b> ${message}`
+        setTimeout(`hide("${elementId}")`, 2000);
+    }
+
+    function hide(elementId) {
+        document.getElementById(elementId).style.display = 'none';
+    }
+</script>

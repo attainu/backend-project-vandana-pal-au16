@@ -6,6 +6,16 @@ body{
   margin: 0px;
 }
 
+#alert{
+  position: fixed;
+  border:none;
+  border-radius: 0;
+  top:0px;
+  width:100%;
+  z-index: 100;
+  display: none;
+}
+
 #nav_bar{
   display:flex;
   flex-direction: row;

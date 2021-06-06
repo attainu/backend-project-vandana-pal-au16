@@ -285,11 +285,13 @@ footer .column:nth-child(1) .fa-twitter{
 }
 
 #alert{
-    position: fixed;
-    top:0px;
-    width:100%;
-    z-index: 100;
-    display: none;
+  position: fixed;
+  border:none;
+  border-radius: 0;
+  top:0px;
+  width:100%;
+  z-index: 100;
+  display: none;
 }
 .sub-footer{
     background:#1e1e1e; 

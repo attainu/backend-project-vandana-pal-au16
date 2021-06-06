@@ -5,7 +5,7 @@ const cartSchema = new mongoose.Schema({
         publisher : Array,
         img_Url : Array,
         login : String,
-        total:Number
+        price:Array
 })
 
 const Cart = mongoose.model('Cart', cartSchema)
