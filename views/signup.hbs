@@ -2,12 +2,14 @@
     <title>Signup</title>
     <link rel="stylesheet" href="/views/Css/signup.css">
 </head>
-    <div id="container">
-        <div id="nav_shadow"></div>
+<div id="container">
+    {{!-- Navigationbar shadow element --}}
+    <div id="nav_shadow"></div>
+
+    {{!-- Navigationbar --}}
     <div id="nav_bar">
         <div id="right">
-            <img src="https://res.cloudinary.com/dtg5jkrv7/image/upload/v1622303085/logo.svg"
-                id="logo"></object>
+            <img src="https://res.cloudinary.com/dtg5jkrv7/image/upload/v1622303085/logo.svg" id="logo"></object>
             <span id="company_name">TheSpiceNet
             </span>
         </div>
@@ -18,24 +20,29 @@
             </a>
         </div>
     </div>
-<div class="alert alert-danger" id="alert" role="alert">
-</div>
+    <div class="alert alert-danger" id="alert" role="alert">
+    </div>
     <div id="img"></div>
+
+    {{!-- side image --}}
     <div id="side_bar">
         <h3 id="form_heading">User SignUp</h3>
+
+        {{!-- SignUp Form --}}
         <form method="POST" enctype="multipart/form-data" id="signup_form">
             <div class="mb-3 mt-0 m-5">
                 <label for="username" class="form-label">UserName</label>
-                <input type="text" name="username" class="form-control" id="Username" placeholder="Enter Username" required>
-            </div>
-            <div class="mb-3 mt-0 m-5">
-                <label for="emailId" class="form-label">Email address</label>
-                <input type="email" name="email" class="form-control" placeholder="Enter Email" id="emailId"
+                <input type="text" name="username" class="form-control" id="Username" placeholder="Enter Username"
                     required>
             </div>
             <div class="mb-3 mt-0 m-5">
+                <label for="emailId" class="form-label">Email address</label>
+                <input type="email" name="email" class="form-control" placeholder="Enter Email" id="emailId" required>
+            </div>
+            <div class="mb-3 mt-0 m-5">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" class="form-control"placeholder="Enter Password" id="password" required>
+                <input type="password" name="password" class="form-control" placeholder="Enter Password" id="password"
+                    required>
             </div>
             <div class="mb-3 mt-0 m-5">
                 <label for="avatar" class="form-label">Profile Picture</label>
@@ -48,20 +55,22 @@
         </form>
     </div>
 </div>
+
+{{!-- script --}}
 <script differ>
-    if ("{{success}}"=="true"){
-        document.getElementById("alert").style.backgroundColor="#4CAF50";
-        document.getElementById("alert").style.color="#ffffff";
-        showMessage('alert',"You Successfully SignUp");
+    if ("{{success}}" == "true") {
+        document.getElementById("alert").style.backgroundColor = "#4CAF50";
+        document.getElementById("alert").style.color = "#ffffff";
+        showMessage('alert', "You Successfully SignUp");
     }
-    else if("{{success}}"=="false"){
-        showMessage('alert',"Error Not Able To Signup");
+    else if ("{{success}}" == "false") {
+        showMessage('alert', "Error Not Able To Signup");
     }
 
-     function showMessage(elementId,message) {
+    function showMessage(elementId, message) {
         document.getElementById(elementId).style.display = 'block';
         console.log(elementId)
-        document.getElementById("alert").innerHTML =`<b>Message:</b> ${message}`
+        document.getElementById("alert").innerHTML = `<b>Message:</b> ${message}`
         setTimeout(`hide("${elementId}")`, 2000);
     }
 

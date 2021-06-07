@@ -2,8 +2,11 @@
     <title>TheSpiceNet</title>
     <link rel="stylesheet" href="/views/Css/homepage.css">
 </head>
+{{!-- alert bar --}}
 <div class="alert alert-danger" id="alert" role="alert">
 </div>
+
+{{!-- navigationbar --}}
 <div id="nav_shadow"></div>
 <div id="nav_bar">
     <div id="right">
@@ -23,7 +26,7 @@
     </div>
 </div>
 </div>
-
+{{!-- content section --}}
 <div id="content">
     <div id="cover_image">
     </div>
@@ -33,6 +36,7 @@
         with <br>amazing food service according to the users rating.</p><br>
     <a href="#heading_text_4" id="order_link"><button type="submit">Order Now</button></a><br>
 </div>
+{{!-- searchbar --}}
 <center>
     <h3 id="heading_text_4">Your Favorite food delivery with TheSpiceNet <i class="fas fa-hamburger"></i></h3>
     <div id="searchbar_form">
@@ -43,7 +47,7 @@
 
 <div id="grid_result">
 </div>
-
+{{!-- footer --}}
 <footer>
     <div class="column">
         <a class="footer_title">TheSpiceNet</a>
@@ -88,22 +92,27 @@
     </div>
 </footer>
 
-
+{{!-- script --}}
 <script defer>
     nav_left = document.getElementById("left");
     gridresult = document.getElementById("grid_result");
     searchBar = document.getElementById("searchbar");
     alrt=document.getElementById("alert");
     let resCharacters = [];
-    function showMessage(elementId,Message) {
+    
+    //alertbar funtion
+   function showMessage(elementId, message) {
         document.getElementById(elementId).style.display = 'block';
         console.log(elementId)
+        document.getElementById("alert").innerHTML = `<b>ALERT!</b> ${message}`
         setTimeout(`hide("${elementId}")`, 2000);
     }
 
     function hide(elementId) {
         document.getElementById(elementId).style.display = 'none';
     }
+    
+    //funtion to find item from the database
     function finditem(data) {
         var str = ["carrot", "broccoli", "asparagus", "cauliflower", "corn", "mushrooms", "onion", "potato","tomato","peas", "sweet potato",  "cabbage", "chili", "garlic","oregano", "bean", "salad", "pizza", "pasta", "popcorn", "lobster", "steak", "bbq", "pudding", "hamburger", "pie", "cake", "sausage", "tacos", "seafood", "fries", "masala","chicken", "toast","poke", "chocolate","donuts","sushi", "ice cream", "curry", "beef", "goat", "turkey", "pork", "fish", "crab", "bacon", "ham", "ribs"
         ]
@@ -133,20 +142,20 @@
         console.log(result)
         return result;
     }
-
-searchBar.addEventListener("keydown", function (e) {
-    if (e.code === "Enter") {
-        showresult();
-    }
-});
-
+    
+    //searchbar funtion to display result
     function showresult() {
+        if (finditem(searchBar.value)==""){
+           showMessage('alert',"No such item available on the store");
+        }
+
+        else{
         fetch(`/search/${finditem(searchBar.value)}`)
             .then(response => response.json())
             .then((data) => {
+                console.log(data)
                 gridresult.innerHTML = ` `;
                 let value = searchBar.value
-                console.log(data)
                 for (var i = 0; i <= 8; i++) {
                     gridresult.innerHTML += `<div class="card" id="grid_card"style="width: 18rem;">
                 <img class="card-img-top" src="${data[i].image_url}" style="object-fit: cover;
@@ -155,14 +164,16 @@ searchBar.addEventListener("keydown", function (e) {
                     <h5 class="card-title">${data[i].title}</h5>
                     <p class="card-text">Publisher<br> ${data[i].publisher}</p>
                     <p class="card-text">Price:- $${data[i].price}</p>
+                    <a href="${data[i].source_url}"class="btn btn-primary">Know more</a>
                     <span class="btn btn-primary" onclick="additem('${data[i].title}','${data[i].publisher}','${data[i].image_url}','${data[i].price}')">Add To Cart</span>
                 </div>
-                </div>`
+                </div>` 
             }
         })
+        }
     }
 
-
+//sending data to /sendcartdata post request
     function additem(dish_name,publisher,image,price) {
         if ("{{login}}" == "true") {
         const data = {
@@ -184,19 +195,17 @@ searchBar.addEventListener("keydown", function (e) {
         .then(data => {
             document.getElementById("alert").style.backgroundColor="#4CAF50";
             document.getElementById("alert").style.color="#ffffff";
-            alrt.innerHTML ="<b>Success!</b> Item Added To Your Cart"
-            showMessage('alert');
+            showMessage('alert','Item Added To Your Cart');
         })
         .catch((error) => {
             console.error('Error:', error); 
         });
     }
         else if("{{login}}" == "" ||"{{login}}" == "false"){
-            alrt.innerHTML ="<b>Warning!</b> Login to add items to the cart "
-           showMessage('alert');
+           showMessage('alert',"Login to add items to the cart");
         }
     }
-
+    //checking if user is logged in
     if ("{{login}}" == "true" ) {
         nav_left.innerHTML = `
     <a href="#" class="nav_link" style="width:300px">
@@ -218,7 +227,8 @@ searchBar.addEventListener("keydown", function (e) {
     </form>
 `
     }
-
+    
+//sending data to /cart post request
     function senddata(username) {
             const data= {
                 "username":"{{username}}"
@@ -231,4 +241,10 @@ searchBar.addEventListener("keydown", function (e) {
             body: JSON.stringify(data),
         })
     }
+    
+searchBar.addEventListener("keydown", function (e) {
+    if (e.code === "Enter") {
+        showresult();
+    }
+});
 </script>

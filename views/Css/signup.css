@@ -1,35 +1,26 @@
-#container{
-  display: flex;
-  flex-direction: row;
-}
-body{
+/* body */
+body {
   margin: 0px;
 }
 
-#alert{
-  position: fixed;
-  border:none;
-  border-radius: 0;
-  top:0px;
-  width:100%;
-  z-index: 100;
-  display: none;
-}
-
-#nav_bar{
-  display:flex;
+#container {
+  display: flex;
   flex-direction: row;
-  font-family: 'Squada One';
+}
+/* navigationbar */
+#nav_bar {
+  display: flex;
+  flex-direction: row;
+  font-family: "Squada One";
   font-size: 4.5vh;
-  position:fixed;
-  height:8vh;
-  top:0px;
-  width:100%;
-  color:#228B22;
-  background-color:transparent;
+  position: fixed;
+  height: 8vh;
+  top: 0px;
+  width: 100%;
+  color: #228b22;
+  background-color: transparent;
   z-index: 3;
 }
-
 
 #nav_shadow {
   content: "";
@@ -42,73 +33,71 @@ body{
   z-index: 2;
 }
 
-
-#right{
-  display:flex;
+#right {
+  display: flex;
   flex-direction: row;
-  padding:1vh 0% 1vh 0%;
+  padding: 1vh 0% 1vh 0%;
 }
 
-#left{
-  width:90%;
-  display:flex;
+#left {
+  width: 90%;
+  display: flex;
   justify-content: flex-end;
 }
-
-#logo{
-  width:50px;
-  height:6vh;
+#logo {
+  width: 50px;
+  height: 6vh;
 }
 
-.nav_link{
-  height:100%;
-  width:15vh;
+.nav_link {
+  height: 100%;
+  width: 15vh;
   font-family: "Iceberg";
   font-size: 20px;
   text-decoration: none;
 }
 
-.nav_link button{
+.nav_link button {
   background-color: transparent;
-  color:#ffffff;
-  border:none;
-  width:100%;
-  height:100%;
+  color: #ffffff;
+  border: none;
+  width: 100%;
+  height: 100%;
   transition: 0.5s;
 }
 
-.nav_link button:hover{
+.nav_link button:hover {
   background-color: white;
-  color:black;
+  color: black;
 }
 
-
-#img{
+#img {
   background-image: url(https://images7.alphacoders.com/888/thumb-1920-888979.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  width:70%;
+  width: 70%;
   height: 100vh;
-box-shadow: 10px 10px 5px #aaaaaa;
+  box-shadow: 10px 10px 5px #aaaaaa;
 }
-#side_bar{
-  width:30%;
-  padding-top: 10vh;
-text-align: center;
+/* form */
+#side_bar {
+  width: 30%;
+  padding-top: 15vh;
+  text-align: center;
 }
 
-#button{
-margin:5vh 0vh 0vh 0vh;
-background-color: #4CAF50;
-font-size: large;
-font-family: 'Iceberg', cursive;
-width:35vh; 
-height:10vh;
-color: white;
-border: none;
-border-radius: 3px;
-outline: none;
+#button {
+  margin: 5vh 0vh 0vh 0vh;
+  background-color: #4caf50;
+  font-size: large;
+  font-family: "Iceberg", cursive;
+  width: 35vh;
+  height: 10vh;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  outline: none;
 }
 #button span {
   cursor: pointer;
@@ -118,7 +107,7 @@ outline: none;
 }
 
 #button span:after {
-  content: '\00bb';
+  content: "\00bb";
   position: absolute;
   opacity: 0;
   top: 0;
@@ -135,77 +124,89 @@ outline: none;
   right: 0;
 }
 
-#form_heading{
-  width:100%;
-  font-family: 'Fascinate', cursive;
+#form_heading {
+  font-family: "Fascinate", cursive;
 }
 
+/* alert */
+#alert {
+  position: fixed;
+  border: none;
+  border-radius: 0;
+  top: 0px;
+  width: 100%;
+  z-index: 100;
+  display: none;
+}
 
 @media only screen and (max-width: 800px) {
-
-  body{
+  /* body responsiveness */
+  body {
     background-image: url(https://png.pngtree.com/thumb_back/fw800/back_our/20190620/ourmid/pngtree-senior-restaurant-steak-couple-dating-h5-background-material-image_161501.jpg);
     background-size: cover contain;
     background-position: inherit;
-    background-repeat:repeat;
-    margin:0px;
-    }
-  
+    background-repeat: repeat;
+    margin: 0px;
+  }
+  #container {
+    flex-direction: column;
+  }
+
+  /* navigationbar responsivness */
   #nav_shadow {
     display: none;
   }
-  
-  #nav_bar{
+
+  #nav_bar {
     display: flex;
-    position:relative;
+    position: relative;
     flex-direction: column;
     align-items: center;
     margin-top: 70px;
-    width:100%;
+    width: 100%;
     justify-content: center;
   }
-  
-  #left{
+
+  #left {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
-  #right{
+
+  #right {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  
-  .nav_link button{
-    color:white;
-    font-size:20px;
+
+  .nav_link button {
+    color: white;
+    font-size: 20px;
   }
-  
-  #logo{
-    width:80px;
-    height:auto;
+
+  #logo {
+    width: 80px;
+    height: auto;
   }
-  #container{
-    flex-direction: column;
-  }
-  
-  #img{
+  /* left section image */
+  #img {
     display: none;
   }
-  #side_bar{
+  /* right section form */
+  #side_bar {
     position: relative;
-    top:10px;
-    width:100%;
-    bottom:100px;
-    color:white
+    margin-top: 50px;
+    padding-top: 20vh;
+    width: 100%;
+    bottom: 100px;
+    color: white;
   }
-  #button{
-    margin:5vh 0vh 0vh 2vh;
+  #button {
+    margin: 5vh 0vh 0vh 2vh;
   }
-  #form_heading{
-    font-family: 'Fascinate', cursive;
+  #form_heading {
+    font-family: "Fascinate", cursive;
     text-align: center;
-    width:100%;
+    width: 100%;
   }
-  }
+}
